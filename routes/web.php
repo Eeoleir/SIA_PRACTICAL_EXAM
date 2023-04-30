@@ -21,11 +21,11 @@ $router->post('/add/teachers',['uses' => 'TeacherController@addTeacher']); //1
 
 $router->delete('/delete/teachers/{id}',['uses' => 'TeacherController@deleteTeacher']); //2
 
-$router->put('update/teachers/{id}',['uses' => 'TeacherController@updateTeacher']); //3
+$router->put('/update/teachers/{id}',['uses' => 'TeacherController@updateTeacher']); //3
 
-$router->get('find/teachers/{id}',['uses' => 'TeacherController@showTeacher']); //4
+$router->get('/find/teachers/{id}',['uses' => 'TeacherController@showTeacher']); //4
 
-$router->get('show/teachers',['uses' => 'TeacherController@showALLTEACHERS']); //5
+$router->get('/show/teachers',['uses' => 'TeacherController@showALLTEACHERS']); //5
 
 
 
