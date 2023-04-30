@@ -21,7 +21,7 @@ $router->post('/users',['uses' => 'TeacherController@addTeacher']); //1
 
 $router->delete('/users/{id}',['uses' => 'TeacherController@deleteTeacher']); //2
 
-$router->patch('users/update/{id}',['uses' => 'TeacherController@updateTeacher']); //3
+$router->put('users/update/{id}',['uses' => 'TeacherController@updateTeacher']); //3
 
 $router->get('/users/{id}','TeacherController@showTeacher'); //4
 

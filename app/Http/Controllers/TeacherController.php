@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-
 use Illuminate\Http\Response;
 use App\Models\User;
 use App\Traits\ApiResponser;
@@ -55,9 +53,6 @@ Class TeacherController extends Controller {
         
     }
 
-
-    
-
     public function deleteTeacher($id) {
         $user = User::where('teacherid', $id)->delete();
 
@@ -70,29 +65,24 @@ Class TeacherController extends Controller {
     }
 
 
-    public function updateTeacher(Request $request, $id) {
+    // UPDATE
+    public function updateTeacher(Request $request, $id)
+    {
 
+        $user = User::where('teacherid', $id)->firstOrFail();
         $rules = [
+            $this->validate($request, [
             'lastname' => 'required|max:20|alpha',
             'firstname' => 'required|max:20|alpha',
             'middlename' => 'required|max:20|alpha',
             'bday' => 'required|date',
             'age' => 'required|integer|min:18',
+            ])  
         ];
-    
         $this->validate($request, $rules);
-    
-        // Retrieve the user from the database using the $id parameter
-        $user = User::findOrFail($id);
-    
         $user->fill($request->all());
-    
-        if ($user->isClean()) {
-            return response()->json("At least one value must change", 403);
-        } else {
-            $user->save();
-            return response()->json($user, 200);
-        }
-    }
-    
+        $user->save();
+        
+        return $user;
+    } 
 }
