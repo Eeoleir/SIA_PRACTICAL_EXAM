@@ -3,7 +3,7 @@
     namespace App\Models;
     use Illuminate\Database\Eloquent\Model;
 
-    class User extends Model{
+    class Teacher extends Model{
         protected $table = 'tblteacher';
         protected $fillable = [
             'lastname','firstname', 'middlename', 'bday', 'age'
