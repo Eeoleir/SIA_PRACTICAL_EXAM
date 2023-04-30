@@ -14,12 +14,15 @@ Class TeacherController extends Controller {
     {
         $this->request = $request;
     }
+
+    // SHOW ALL RECORDS
     public function showALLTEACHERS()
     {
         $users = User::all();
         return response()->json(['data' => $users], 200);
     }
 
+    // ADD FILES
     public function addTeacher(Request $request){ //ADD USER
         
         $rules = [
@@ -38,7 +41,7 @@ Class TeacherController extends Controller {
     }
 
 
-
+    // SEARCH
     public function showTeacher($id)
     {
         //$user =  User::findOrFail($id);
