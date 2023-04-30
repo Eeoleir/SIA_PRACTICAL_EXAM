@@ -17,15 +17,16 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->post('/users',['uses' => 'TeacherController@addTeacher']); //1
+$router->post('/add/teachers',['uses' => 'TeacherController@addTeacher']); //1
 
-$router->delete('/users/{id}',['uses' => 'TeacherController@deleteTeacher']); //2
+$router->delete('/delete/teachers/{id}',['uses' => 'TeacherController@deleteTeacher']); //2
 
-$router->put('users/update/{id}',['uses' => 'TeacherController@updateTeacher']); //3
+$router->put('update/teachers/{id}',['uses' => 'TeacherController@updateTeacher']); //3
 
-$router->get('/users/{id}','TeacherController@showTeacher'); //4
+$router->get('find/teachers/{id}',['uses' => 'TeacherController@showTeacher']); //4
 
-$router->get('/users',['uses' => 'TeacherController@showALLTEACHERS']);//5
+$router->get('show/teachers',['uses' => 'TeacherController@showALLTEACHERS']); //5
+
 
 
 

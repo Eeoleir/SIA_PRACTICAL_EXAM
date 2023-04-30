@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Response;
-use App\Models\User;
+use App\Models\Teacher;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 
@@ -16,11 +16,11 @@ Class TeacherController extends Controller {
     }
     public function showALLTEACHERS()
     {
-        $users = User::all();
-        return response()->json(['data' => $users], 200);
+        $teachers = Teacher::all();
+        return response()->json(['data' => $teachers], 200);
     }
 
-    public function addTeacher(Request $request){ //ADD USER
+    public function addTeacher(Request $request){ //ADD TEACHER
         
         $rules = [
             'lastname' => 'required|max:20|alpha',
@@ -33,34 +33,34 @@ Class TeacherController extends Controller {
 
         $this->validate($request,$rules);
 
-        $user = User::create($request->all());
-        return response()->json($user, 200);
+        $teachers = Teacher::create($request->all());
+        return response()->json($teachers, 200);
     }
 
 
 
     public function showTeacher($id)
     {
-        //$user =  User::findOrFail($id);
-        $user = User::where('teacherid', $id)->first();
+        //$teachers =  Teacher::findOrFail($id);
+        $teachers = Teacher::where('teacherid', $id)->first();
 
-        if($user){
-            return $this->successResponse($user);
+        if($teachers){
+            return $this->successResponse($teachers);
         }
         else{
-            return $this->errorResponse('User ID Does Not Exists', Response::HTTP_NOT_FOUND);
+            return $this->errorResponse('Teacher ID Does Not Exists', Response::HTTP_NOT_FOUND);
         }
         
     }
 
     public function deleteTeacher($id) {
-        $user = User::where('teacherid', $id)->delete();
+        $teachers = Teacher::where('teacherid', $id)->delete();
 
-        if($user){
-            return $this->successResponse($user);
+        if($teachers){
+            return $this->successResponse($teachers);
         }
         else{
-            return $this->errorResponse('User ID Does Not Exists', Response::HTTP_NOT_FOUND);
+            return $this->errorResponse('Teacher ID Does Not Exists', Response::HTTP_NOT_FOUND);
         }
     }
 
@@ -69,7 +69,7 @@ Class TeacherController extends Controller {
     public function updateTeacher(Request $request, $id)
     {
 
-        $user = User::where('teacherid', $id)->firstOrFail();
+        $teachers = Teacher::where('teacherid', $id)->firstOrFail();
         $rules = [
             $this->validate($request, [
             'lastname' => 'required|max:20|alpha',
@@ -80,9 +80,9 @@ Class TeacherController extends Controller {
             ])  
         ];
         $this->validate($request, $rules);
-        $user->fill($request->all());
-        $user->save();
+        $teachers->fill($request->all());
+        $teachers->save();
         
-        return $user;
+        return $teachers;
     } 
 }
