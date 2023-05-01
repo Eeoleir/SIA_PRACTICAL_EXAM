@@ -22,12 +22,8 @@ Class TeacherController extends Controller {
         return response()->json(['data' => $teachers], 200);
     }
 
-<<<<<<< HEAD
-    // ADD FILES
-    public function addTeacher(Request $request){ //ADD USER
-=======
     public function addTeacher(Request $request){ //ADD TEACHER
->>>>>>> 368f20d0ceb17726104276260ccae9089b7560c0
+
         
         $rules = [
             'lastname' => 'required|max:20|alpha',
